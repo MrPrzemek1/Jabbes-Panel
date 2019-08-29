@@ -2,7 +2,6 @@
 using JabbesPanel.Locators;
 using JabbesPanel.Pages;
 using OpenQA.Selenium;
-using SeleniumExtras.WaitHelpers;
 using System.Collections.Generic;
 
 namespace JabbesPanel.Tests

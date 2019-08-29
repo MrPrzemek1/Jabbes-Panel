@@ -44,8 +44,11 @@ namespace JabbesPanel.Pages
         {
             switch (browserType)
             {
-                case BrowserType.Chrome:                  
-                    DriverInstance = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                case BrowserType.Chrome:
+                    ChromeOptions options = new ChromeOptions();
+                    options.AddArgument("--start-maximized");
+                    options.AddArgument("--lang=pl-PL");
+                    DriverInstance = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),options);                  
                     break;
                 default:
                     throw new ArgumentOutOfRangeException ("No such browser exists");

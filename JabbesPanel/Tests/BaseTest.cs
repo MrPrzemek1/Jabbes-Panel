@@ -7,7 +7,6 @@ namespace JabbesPanel.Tests
 {
     public abstract class BaseTest
     {
-        IWebDriver driver;
         private string url = "http://jabbes-panel-release.azurewebsites.net";
         public BaseTest() { }
 
@@ -17,11 +16,8 @@ namespace JabbesPanel.Tests
         public void TestInitialize()
         {
             WebDriverFactory.CreateWebDriver(BrowserType.Chrome);
-
             WebDriverFactory.Driver.Navigate().GoToUrl(url);
-            WebDriverFactory.Driver.Manage().Window.Maximize();
-            var login = new LoginPage();
-            loginPage = login.ChangeLanguage();          
+            loginPage = new LoginPage();
         }
 
         [TestCleanup]
