@@ -1,10 +1,9 @@
 ﻿using JabbesPanel.Helpers;
 using JabbesPanel.Locators;
-using JabbesPanel.Pages;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 
-namespace JabbesPanel.Tests
+namespace JabbesPanel.Pages
 {
     public class RegistrationPage : BasePage
     {
@@ -19,7 +18,8 @@ namespace JabbesPanel.Tests
         public IWebElement UnitField { get; private set; }
         public IWebElement ConfirmationButton { get; private set; }
         public IWebElement ConfirmationMessage { get; private set; }
-        public IList<IWebElement> gridCells { get; private set; }
+        public IList<IWebElement> EridCells { get; private set; }
+        public RegistrationErrorFieldsClass Errors { get;}
 
         public RegistrationPage() : base()
         {
@@ -34,9 +34,10 @@ namespace JabbesPanel.Tests
             UnitField = Factory.TryFindElement(By.Id(RegistrationPageLocators.UnitFieldLocator));
             ConfirmationMessage = Factory.TryFindElement(By.ClassName(RegistrationPageLocators.ConfirmationMessageLocator));
             ConfirmationButton = Factory.TryFindElement(By.XPath(RegistrationPageLocators.ConfirmationButtonLocator));
+            Errors = new RegistrationErrorFieldsClass();
         }
 
-        public RegistrationPage FillAndSubmitRegistrationForm(string login, string email, string name, string surname, string phone, string password, string confirmPassword, string birthDate)
+        public RegistrationPage FillAndSubmitRegistrationForm(string login, string email, string name, string surname, string phone, string password, string confirmPassword)
         {
             LoginField.SendKeys(login);
             EmailField.SendKeys(email);
@@ -47,8 +48,27 @@ namespace JabbesPanel.Tests
             RepeatPasswordField.SendKeys(confirmPassword);
             TestDataHelper.ClickRandomDate(BirthDateField);
             UnitField.Click();
-            gridCells = Factory.TryFindElements(By.XPath(RegistrationPageLocators.GridCellsLocator));
-            TestDataHelper.ClickRandomGridCell(gridCells);
+            EridCells = Factory.TryFindElements(By.XPath(RegistrationPageLocators.GridCellsLocator));
+            TestDataHelper.ClickRandomGridCell(EridCells);
+            ConfirmationButton.Click();
+            return new RegistrationPage();
+        }
+        public RegistrationPage aa(string birthDate, params string[] vs)
+        {
+            foreach (var item in vs)
+            {
+                LoginField.SendKeys(item);
+                EmailField.SendKeys(item);
+                NameField.SendKeys(item);
+                SurnameField.SendKeys(item);
+                PhoneField.SendKeys(item);
+                PasswordField.SendKeys(item);
+                RepeatPasswordField.SendKeys(item);
+            }          
+            TestDataHelper.ClickRandomDate(BirthDateField);
+            UnitField.Click();
+            EridCells = Factory.TryFindElements(By.XPath(RegistrationPageLocators.GridCellsLocator));
+            TestDataHelper.ClickRandomGridCell(EridCells);
             ConfirmationButton.Click();
             return new RegistrationPage();
         }
