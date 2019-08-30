@@ -1,6 +1,6 @@
 ﻿namespace JabbesPanel.Resources
 {
-    enum DropDownOptions
+    public enum DropDownOptions
     {
         #region MyEnviornment
         Structure,

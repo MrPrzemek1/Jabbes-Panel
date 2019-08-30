@@ -1,7 +1,9 @@
 ﻿using JabbesPanel.Locators;
 using JabbesPanel.Resources;
 using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 using System;
+using System.Threading;
 
 namespace JabbesPanel.Pages
 {
@@ -24,28 +26,24 @@ namespace JabbesPanel.Pages
             LogoutButton = Factory.TryFindElement(By.LinkText(HomePageLocators.LogoutButtonLocator));
         }
 
-        private void ExpandDropDown(IWebElement element)
-        {
-            element.Click();
-        }
-
-        private T SelectOptionFromMyEnviornmentDropDown<T>(DropDownOptions optionName) where T : new()
+        public T SelectOptionFromMyEnviornmentDropDown<T>(DropDownOptions optionName) where T : class
         {
             MyEnvironmentDropDown.Click();
             switch (optionName)
             {
                 case DropDownOptions.Structure:
-                    MyEnvironmentDropDown.FindElement(By.LinkText(HomePageLocators.StructureButtonLocator)).Click();
-                    return new T();
+                    WebDriverFactory.BrowserWaitInstance.Until(ExpectedConditions.ElementToBeClickable(MyEnvironmentDropDown.FindElement(By.XPath(HomePageLocators.StructureButtonLocator)))).Click();
+                    Thread.Sleep(2000);
+                    return (T)Activator.CreateInstance(typeof(T));
                 case DropDownOptions.Users:
-                    MyEnvironmentDropDown.FindElement(By.LinkText(HomePageLocators.StructureButtonLocator)).Click();
-                    return new T();
+                    MyEnvironmentDropDown.FindElement(By.LinkText(HomePageLocators.UsersButtonLocator)).Click();
+                    return (T)Activator.CreateInstance(typeof(T));
                 case DropDownOptions.Participants:
-                    MyEnvironmentDropDown.FindElement(By.LinkText(HomePageLocators.StructureButtonLocator)).Click();
-                    return new T();
+                    MyEnvironmentDropDown.FindElement(By.LinkText(HomePageLocators.ParticipantsButtonLocator)).Click();
+                    return (T)Activator.CreateInstance(typeof(T));
                 case DropDownOptions.Orders:
-                    MyEnvironmentDropDown.FindElement(By.LinkText(HomePageLocators.StructureButtonLocator)).Click();
-                    return new T();
+                    MyEnvironmentDropDown.FindElement(By.LinkText(HomePageLocators.OrdersButtonLocator)).Click();
+                    return (T)Activator.CreateInstance(typeof(T));
                 default:
                     throw new ArgumentOutOfRangeException("Option in dropdown doesn't find.");
             }

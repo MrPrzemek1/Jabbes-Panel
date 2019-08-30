@@ -12,7 +12,7 @@
         #endregion
 
         #region MyEnvironmentDropDownOptions
-        public const string StructureButtonLocator = "//a[contains(text(),'Struktura')]";
+        public const string StructureButtonLocator = "//a[@href='/Environment/Structure']";
         public const string UsersButtonLocator = "//a[contains(text(),'Użytkownicy')]";
         public const string ParticipantsButtonLocator = "//a[contains(text(),'Uczestnicy')]";
         public const string OrdersButtonLocator = "//a[contains(text(),'Rozkazy')]";

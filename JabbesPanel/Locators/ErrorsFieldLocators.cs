@@ -6,7 +6,7 @@ namespace JabbesPanel.Locators
 {
     public class ErrorsFieldLocators
     {
-        public const string LoginErrorFieldLocator = "UserName-Error";
+        public const string LoginErrorFieldLocator = "UserName-error";
         public const string EmailErrorFieldLocator = "Email-error";
         public const string NameErrorFieldLocator = "FirstName-error";
         public const string SurnameErrorFieldLocator = "LastName-error";
