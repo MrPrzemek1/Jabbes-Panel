@@ -3,8 +3,8 @@ using JabbesPanel.Pages;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Threading;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace JabbesPanel.Helpers
@@ -12,6 +12,7 @@ namespace JabbesPanel.Helpers
     public static class TestDataHelper
     {
         private static Random random = new Random();
+        public static string url = File.ReadAllText(@"C:\JabesData.txt");
 
         public static string RandomString(int length)
         {
@@ -36,6 +37,7 @@ namespace JabbesPanel.Helpers
             IWebElement today = WebDriverFactory.Driver.TryFindElement(By.XPath(TestDataLocators.GridCellLocator));
             today.Click();
         }
+
     }
 }
 

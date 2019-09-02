@@ -1,4 +1,5 @@
-﻿using JabbesPanel.Pages;
+﻿using JabbesPanel.Helpers;
+using JabbesPanel.Pages;
 using JabbesPanel.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -7,7 +8,6 @@ namespace JabbesPanel.Tests
 {
     public abstract class BaseTest
     {
-        private string url = "http://jabbes-panel-release.azurewebsites.net";
         public BaseTest() { }
 
         public LoginPage loginPage;
@@ -16,7 +16,7 @@ namespace JabbesPanel.Tests
         public void TestInitialize()
         {
             WebDriverFactory.CreateWebDriver(BrowserType.Chrome);
-            WebDriverFactory.Driver.Navigate().GoToUrl(url);
+            WebDriverFactory.Driver.Navigate().GoToUrl(TestDataHelper.url);
             loginPage = new LoginPage();
         }
 

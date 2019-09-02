@@ -22,46 +22,4 @@ namespace JabbesPanel.Tests
             return homePage.SelectOptionFromMyEnviornmentDropDown<StructurePage>(DropDownOptions.Structure);
         }
     }
-
 }
-
-
-//interface ITest
-//{
-//    void StartTest();
-//}
-//--------------------------------------------------------------------------------------------
-//class TestStructure : ITest
-//{
-//    void StartTest()
-//    {
-//	..........................
-//}
-//}
-//--------------------------------------------------------------------------------------------
-//class TestUsers : ITest
-//{
-//    void StartTest()
-//    {
-//	..........................
-//}
-//}
-//--------------------------------------------------------------------------------------------
-//Dictionary<DropDownOptions, ITest> TestDictionary
-//{
-
-//    { DropDownOptions.Structure, new TestStructure},
-
-//    { DropDownOptions.Users, new TestUsers},
-//}
-//--------------------------------------------------------------------------------------------
-//public void SelectOptionFromMyEnviornmentDropDown(DropDownOptions optionName)
-//{
-//    ITest myTest = TestDictionary[optionName];
-//    myTest.StartTest();
-//}
-//interface ITest
-//{
-//    void StartTest();
-//}
-//--------------------------------------------------------------------------------------------
